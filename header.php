@@ -16,8 +16,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
-<link href='https://fonts.googleapis.com/css?family=Cutive+Mono' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Merriweather+Sans' rel='stylesheet' type='text/css'>
 <?php wp_head(); ?>
 </head>
 
@@ -30,29 +30,35 @@
 			<div class="text-center">
 				<?php
 				if ( is_front_page() && is_home() ) : ?>
-					<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+					<div class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></div>
 				<?php else : ?>
-					<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
+					<div class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></div>
 				<?php
-				endif;
-			$description = get_bloginfo( 'description', 'display' );
+				endif ?>
+                <?php 
+                $description = get_bloginfo( 'description', 'display' );
 			if ( $description || is_customize_preview() ) : ?>
-				<p class="site-description"><?php echo $description; /* WPCS: xss ok. */ ?></p>
+				<div class="site-description"><?php echo $description; /* WPCS: xss ok. */ ?></div>
 			<?php
 			endif; ?>
 			</div>
 		</div><!-- .site-branding -->
-		<hr>
+		<div class="headerdivider"></div>
+        <?php if ( is_front_page() && is_home() ) : ?>
 		<div class="aboutmeBlock">
 			<div class="text-center">
 				I'm a 25-year old developer who loves <emphasis>learning</emphasis> about new technologies and <emphasis>experimenting</emphasis> to <emphasis>build</emphasis> interesting products.
 				I currently work on Windows Hello, Microsoft's Facial Authentication platform. This is my blog. Enjoy!
 			</div>
 		</div>
+        <?php endif; ?>
 		<nav id="site-navigation" class="main-navigation" role="navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'aamirjawaid' ); ?></button>
+			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+                <?php esc_html_e( 'Primary Menu', 'aamirjawaid' ); ?>
+            </button>
 			<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu' ) ); ?>
-		</nav><!-- #site-navigation -->
+		</nav>
+        <!-- #site-navigation -->
 	</header><!-- #masthead -->
 
 	<div id="content" class="site-content">
